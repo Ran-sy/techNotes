@@ -11,6 +11,7 @@ const errHandler = require('./middleware/errorHandle')
 const corsOptions = require('./config/corsOptions')
 const noteRoute = require('./routes/noteRoutes')
 const userRoute = require('./routes/userRoutes')
+const authRoute = require('./routes/authRoutes')
 
 mongoose.set('strictQuery', true);
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/rout"));
 app.use("/notes", noteRoute)
 app.use("/user", userRoute)
+app.use("/auth", authRoute)
 
 app.all("*", (req, res) => {
   res.status(404);
